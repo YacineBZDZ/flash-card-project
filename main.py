@@ -1,6 +1,7 @@
 from tkinter import *
 BACKGROUND_COLOR = "#B1DDC6"
 FONT = "Ariel"
+window = Tk()
 window.minsize(width=1000, height=600)
 window.title("Flashy")
 window.config(pady=50, padx=50, bg=BACKGROUND_COLOR)
