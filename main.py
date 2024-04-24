@@ -8,7 +8,7 @@ window.config(pady=50, padx=50, bg=BACKGROUND_COLOR)
 
 image_card_front = PhotoImage(file="../flash-card-project-start/images/card_front.png")
 card_front = Canvas(width=800, height=526,bg=BACKGROUND_COLOR,highlightthickness=0)
-card_front.create_image(400,260, image=image_card_front )
+card_front.create_image(400,263, image=image_card_front )
 card_front.create_text(400,150, text="Title",font=(FONT,40,"italic"))
 card_front.create_text(400,263, text="word",font=(FONT,60,"bold"))
 card_front.grid(column=1,row=1,columnspan=2)
