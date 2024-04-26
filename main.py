@@ -10,23 +10,36 @@ window = Tk()
 window.minsize(width=1000, height=600)
 window.title("Flashy")
 window.config(pady=50, padx=50, bg=BACKGROUND_COLOR)
-
-
-word_list = pd.read_csv("../flash-card-project-start/data/french_words.csv")
-Tran_word_list = word_list.to_dict(orient="records")
-current_card = {}
+file_path = "data/word_to_learn.csv"
+try:
+    word_list = pd.read_csv("../flash-card-project-start/data/french_words.csv")
+    word_list_to_learn = pd.read_csv("../flash-card-project-start/data/word_to_learn.csv")
+except FileNotFoundError:
+    word_list_to_learn = word_list.to_csv(file_path,index=False)
+else:
+    Tran_word_list = word_list.to_dict(orient="records")
+    word_dict_to_learn = word_list_to_learn.to_dict(orient="records")
+    current_card = {}
 
 
 
 # TODO 2 : create function That changes the words
 def next_word():
-    global card_flip_timer, current_card
+    global card_flip_timer, current_card, word_list_to_learn
     window.after_cancel(card_flip_timer)
-    current_card = random.choice(Tran_word_list)
+    print(word_dict_to_learn)
+    current_card = random.choice(word_dict_to_learn)
+    # index =len(current_card)
+    # print(index)
     card.itemconfig(card_title, text=f"French",fill="black" )
     card.itemconfig(card_word, text=current_card['French'], fill="black")
     card.itemconfig(card_background, image=image_card_front)
     card_flip_timer = window.after(3000, func=flip_card)
+    word_dict_to_learn.remove(current_card)
+    print(word_dict_to_learn)
+    # new_data = {'French':word_dict_to_learn[0:]["French"]}
+    # word_list_to_learn.drop()
+    # word_list_to_learn = word_dict_to_learn.(file_path,index=False)
 
 
 #TODO 3 : create the fliping function
